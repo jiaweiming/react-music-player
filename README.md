@@ -1,2 +1,1 @@
-# webpack-music
-webpack+react
+# react-music
