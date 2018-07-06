@@ -10,93 +10,30 @@ class Audio extends React.Component {
 			currentTime: 0,
 			isPlay: true,
 			percentProgress: 0,
-			songs: props.url,
-			currentMusic:{}
-		}
+		};
+		this.next = this.next.bind(this);
+		this.last = this.last.bind(this);
+		this.play = this.play.bind(this);
+		this.musicEnd = this.musicEnd.bind(this);
+		this.formatTime = this.formatTime.bind(this);
 	}
-
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			currentMusic:nextProps.data[0]
-		});
-	}
-
 
 	//播放暂停
-	play(){
+	play() {
 		this.setState({
 			isPlay: !this.state.isPlay
 		})
 	};
+
 	//format time
-	formatTime(time){
+	formatTime(time) {
 		const second = Math.floor(time % 60);
 		let minutes = Math.floor(time / 60);
 		return `0${minutes}:${second > 10 ? second : `0${second}`}`
 	};
 
-	last(){  //上一首切换
-		if(!this.state.currentMusic.url){
-			return false
-		}
-		let current = '';
-		this.props.info.map((value,index) => {
-			if(value.url === this.state.currentMusic.url){
-				current = index
-			}
-		});
-		if(current > 0){
-			this.setState({
-				currentMusic:this.props.info[current - 1]
-			},()=>{
-				this.play()
-			})
-		}else{
-			this.setState({
-				currentMusic:this.props.info[this.props.info.length -1]
-			},() =>{
-				this.play()
-			})
-		}
-	}
-
-	next(){  //下一首
-		if(!this.state.currentMusic.url){
-			return false
-		}
-		let current = '';
-		this.props.info.map((value,index) =>{
-			if(value.url === this.state.currentMusic.url){
-				current = index
-			}
-		});
-		if(current < this.props.info.length-1){
-			this.setState({
-				currentMusic:this.props.info[current+1]
-			},()=>{
-				this.play()
-			})
-		}else{
-			this.setState({
-				currentMusic:this.props.info[0]
-			},()=>{
-				this.play()
-			})
-		}
-	}
-
-	playThis(i){ //播放随机点击的歌曲
-		this.setState({
-			currentMusic:this.props.info[i]
-		},()=>{
-			this.play()
-		})
-	}
-
-	controlAudio(type,value){
-		const {id, src} = this.props;
-		const audio = document.getElementById(`audio${id}`);
+	controlAudio(type, value) {
+		const audio = document.getElementById("my-audio");
 		switch (type) {
 			case 'allTime':
 				this.setState({
@@ -130,9 +67,9 @@ class Audio extends React.Component {
 				break;
 			case 'getCurrentTime':
 				this.setState({
-					currentTime:audio.currentTime
+					currentTime: audio.currentTime
 				});
-				if(audio.currentTime === audio.duration){
+				if (audio.currentTime === audio.duration) {
 					this.setState({
 						isPlay: false
 					})
@@ -140,20 +77,66 @@ class Audio extends React.Component {
 		}
 	};
 
+	last() {  //上一首切换
+		const audio = document.getElementById("my-audio");
+		let current = '';
+		let myData = this.props.data;
+		myData.map((value, index) => {
+			if (value.url === audio.currentSrc) {
+				current = index
+			}
+		});
+		if (current >= 2) {
+			audio.src = myData[current - 1].url;
+		} else {
+			audio.src = myData[current].url;
+		}
+		audio.load();
+		audio.play()
+	}
+
+	next() {  //下一首,获取当前歌曲url在数组中位置，修改索引值
+		const audio = document.getElementById("my-audio");
+		let current = '';
+		let myData = this.props.data;
+		audio.pause();
+		myData.map((value, index) => {
+			if (value.url === audio.currentSrc) {
+				current = index;
+			}
+		});
+		if (current <= myData.length) {
+			audio.src = myData[current + 1].url;
+		} else {
+			audio.src = myData[current].url;
+		}
+		audio.load();
+		audio.play()
+	}
+
+	musicEnd() { //播放结束，随机下一首
+		let myData = this.props.data;
+		const audio = document.getElementById("my-audio");
+		const randomNumber = Math.floor(Math.random() * myData.length);
+		audio.src = myData[randomNumber].url;
+		audio.load();
+		audio.play()
+	}
+
 	render() {
-		let {isPlay, allTime, currentTime, songs,currentMusic} = this.state;
+		let {isPlay, allTime, currentTime} = this.state;
 		let audioTime = currentTime / allTime * 100;
 		return <div className="footer-tab-container">
-
-			<audio id={`audio${this.props.id}`} autoPlay="autoPlay"
-			       loop="loop"
+			<audio id="my-audio" autoPlay="autoPlay"
+			       src={this.props.url}
 			       onCanPlay={() => this.controlAudio('allTime')}
+			       onEnded={this.musicEnd}
 			       onTimeUpdate={(e) => this.controlAudio("getCurrentTime")}>
-				<source src={songs} type="audio/mpeg"/>
 			</audio>
 			<div className="play-time-progress">
 				<span className="current-time">{this.formatTime(currentTime)}</span>
-				<Progress className="play-progress" onChange={(value) => this.controlAudio('changeCurrentTime', value)} percent={audioTime} showInfo={false}/>
+				<Progress className="play-progress" onChange={(value) => this.controlAudio('changeCurrentTime', value)}
+				          percent={audioTime} showInfo={false}/>
 				<span className="total-time">{this.formatTime(allTime)}</span>
 			</div>
 			<div className="footer-control">

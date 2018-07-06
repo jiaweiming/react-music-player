@@ -1,21 +1,18 @@
 import React from "react"
-import Audio from "../home/audio/audio.jsx"
+import Audio from "./audio/audio.jsx"
 import $ from "jquery"
 
 class Footer extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
-			songs:[],
-			test:[
-				{url:"http://www.ytmp3.cn/?down/40915.mp3"}
-			]
+			songs:[]
 		}
 	}
 
 	render() {
 		return <div>
-			<Audio id="my-audio" url="http://www.ytmp3.cn/?down/40915.mp3" data={this.state.songs}/>
+			<Audio id="my-audio" url="http://www.ytmp3.cn/?down/47153.mp3" data={this.state.songs}/>
 		</div>
 	}
 
