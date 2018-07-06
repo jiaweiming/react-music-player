@@ -1,104 +1,124 @@
 {
   "music": [
     {
-      "directory": [
-        {
-          "title": "讲真的",
-          "url": "http://www.ytmp3.cn/?down/47857.mp3",
-          "avatar": "null",
-          "author": "曾惜"
-        },
-        {
-          "title": "That Girl",
-          "url": "http://www.ytmp3.cn/?down/47869.mp3",
-          "avatar": "null",
-          "author": "Olly Murs"
-        },
-        {
-          "title": "最美的期待",
-          "url": "http://www.ytmp3.cn/?down/47601.mp3",
-          "avatar": "null",
-          "author": "周笔畅"
-        },
-        {
-          "title": "你就不要想起我",
-          "url": "http://www.ytmp3.cn/?down/32543.mp3",
-          "avatar": "null",
-          "author": "田馥甄"
-        },
-        {
-          "title": "带你去旅行",
-          "author": "校长",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/43135.mp3"
-        },
-        {
-          "title": "起风了",
-          "author": "买辣椒也用券",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/45963.mp3"
-        },
-        {
-          "title": "学猫叫",
-          "author": "小潘潘&小峰峰",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/47153.mp3"
-        },
-        {
-          "title": "体面-(电影《前任3：再见前任》插曲)",
-          "author": "于文文",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/45436.mp3"
-        },
-        {
-          "title": "空空如也",
-          "author": "胡66",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/45959.mp3"
-        },
-        {
-          "title": "怀念青春",
-          "author": "刘刚[旭日阳刚]",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/45391.mp3"
-        },
-        {
-          "title": "让我做你的眼睛",
-          "author": "莉哥",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/47866.mp3"
-        },
-        {
-          "title": "像我这样的人",
-          "author": "毛不易",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/45402.mp3"
-        },
-        {
-          "title": "音阙诗听",
-          "author": "红昭愿",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/44577.mp3"
-        },
-        {
-          "title": "handclap",
-          "author": "fitz&fitz and the tantrums",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/45994.mp3"
-        },
-        {
-          "title": "小跳蛙",
-          "author": "青蛙",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/40915.mp3"
-        },
-        {
-          "title": "佛系少女",
-          "author": "冯提莫",
-          "avatar": "null",
-          "url": "http://www.ytmp3.cn/?down/46741.mp3"
-        }
-      ]
+      "title": "讲真的",
+      "url": "http://www.ytmp3.cn/?down/47857.mp3",
+      "avatar": "http://p1.music.126.net/459WLUlXcy6N6NUmmd7V8A==/109951163327091541.jpg?param=500y500",
+      "author": "曾惜"
+    },
+    {
+      "title": "That Girl",
+      "url": "http://www.ytmp3.cn/?down/47869.mp3",
+      "avatar": "http://p1.music.126.net/_dPhSlbDz23MjXUEYeBGRw==/18820340533734696.jpg?param=500y500",
+      "author": "Olly Murs"
+    },
+    {
+      "title": "最美的期待",
+      "url": "http://www.ytmp3.cn/?down/47601.mp3",
+      "avatar": "http://p1.music.126.net/mwCUI0iL3xEC2a4WVICHlA==/109951163115369030.jpg?param=500y500",
+      "author": "周笔畅"
+    },
+    {
+      "title": "你就不要想起我",
+      "url": "http://www.ytmp3.cn/?down/32543.mp3",
+      "avatar": "http://p1.music.126.net/yz4vnCX5ljGIievC5x5wKw==/109951163107641775.jpg?param=500y500",
+      "author": "田馥甄"
+    },
+    {
+      "title": "带你去旅行",
+      "author": "校长",
+      "avatar": "http://p1.music.126.net/Y1M_jMalH6bWa6OydUeU2A==/18555358232355277.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/43135.mp3"
+    },
+    {
+      "title": "起风了",
+      "author": "买辣椒也用券",
+      "avatar": "http://p1.music.126.net/c0nzSObvxF_DftayAJjXsw==/109951162864860506.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45963.mp3"
+    },
+    {
+      "title": "学猫叫",
+      "author": "小潘潘&小峰峰",
+      "avatar": "http://p1.music.126.net/D1Ov-XMAwUzsr16mQk95fA==/109951163256119128.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/47153.mp3"
+    },
+    {
+      "title": "体面-(电影《前任3：再见前任》插曲)",
+      "author": "于文文",
+      "avatar": "http://p1.music.126.net/ZnJxTtQAxrrqT4mnoZ6SoA==/109951163092546134.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45436.mp3"
+    },
+    {
+      "title": "空空如也",
+      "author": "胡66",
+      "avatar": "http://p1.music.126.net/gIwEtwP71XxNnFFlHdrPNQ==/109951163084643330.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45959.mp3"
+    },
+    {
+      "title": "怀念青春",
+      "author": "刘刚[旭日阳刚]",
+      "avatar": "http://p1.music.126.net/FrGEWl_Ow0j7qxYxSfGbzA==/3243559303898167.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45391.mp3"
+    },
+    {
+      "title": "让我做你的眼睛",
+      "author": "莉哥",
+      "avatar": "http://p1.music.126.net/d9ayaaBjC6bEiQSZnrr2SQ==/109951163339675324.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/47866.mp3"
+    },
+    {
+      "title": "像我这样的人",
+      "author": "毛不易",
+      "avatar": "http://p1.music.126.net/S4e2eeYhA_jXwIf5MGaksg==/109951163003580734.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45402.mp3"
+    },
+    {
+      "title": "音阙诗听",
+      "author": "红昭愿",
+      "avatar": "http://p1.music.126.net/8ltR3o9R8uJ9_5Cc71cDhA==/109951162951242154.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/44577.mp3"
+    },
+    {
+      "title": "handclap",
+      "author": "fitz&fitz and the tantrums",
+      "avatar": "http://p1.music.126.net/PR3EytXLujTRXPclM6woIw==/782852289190980.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45994.mp3"
+    },
+    {
+      "title": "小跳蛙",
+      "author": "青蛙",
+      "avatar": "http://p1.music.126.net/9xK60ID8ozN56lrjZqpAVQ==/105553116282321.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/40915.mp3"
+    },
+    {
+      "title": "佛系少女",
+      "author": "冯提莫",
+      "avatar": "http://p1.music.126.net/MdSa3oZgGXPPry9nthntEQ==/109951163156209240.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/46741.mp3"
+    },
+    {
+      "title": "远走高飞",
+      "author": "金志文",
+      "avatar": "http://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/41338.mp3"
+    },
+    {
+      "title": "童话镇",
+      "author": "陈一发",
+      "avatar": "http://p1.music.126.net/tfa811GLreJI_S0h9epqRA==/3394192426154346.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/45465.mp3"
+    },
+    {
+      "title": "最后我们没在一起",
+      "author": "白小白",
+      "avatar": "http://p1.music.126.net/kP_CwTTxzdTCzjq08lFVOw==/109951163134484171.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/46585.mp3"
+    },
+    {
+      "title": "花桥流水",
+      "author": "高安&纳兰珠儿",
+      "avatar": "http://p1.music.126.net/gVAgBs_eL2sPaaXBWdt-XA==/109951163083309557.jpg?param=500y500",
+      "url": "http://www.ytmp3.cn/?down/46421.mp3"
     }
   ]
 }

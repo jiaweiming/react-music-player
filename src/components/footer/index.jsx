@@ -3,10 +3,10 @@ import Audio from "./audio/audio.jsx"
 import $ from "jquery"
 
 class Footer extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.state={
-			songs:[]
+		this.state = {
+			songs: []
 		}
 	}
 
@@ -16,28 +16,28 @@ class Footer extends React.Component {
 		</div>
 	}
 
-	setItems(data){
+	setItems(data) {
 		this.setState({
-			songs:data
+			songs: data
 		});
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		$.ajax({
-			type:"GET",
-			async:true,
-			url:"http://zhengjinwei.top:3002/files/list.json",
-			dataType:"json",
-			beforeSend:function () {
+			type: "GET",
+			async: true,
+			url: "http://zhengjinwei.top:3002/files/list.json",
+			dataType: "json",
+			beforeSend: function () {
 				$(".loading").show();
 			},
-			success:function (res) {
-				this.setItems(res.music[0].directory);
+			success: function (res) {
+				this.setItems(res.music);
 			}.bind(this),
-			error:function (res) {
+			error: function (res) {
 				alert("Some error happened...")
 			},
-			complete:function () {
+			complete: function () {
 				$(".loading").hide();
 			}
 		})

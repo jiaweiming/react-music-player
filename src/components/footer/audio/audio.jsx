@@ -29,7 +29,7 @@ class Audio extends React.Component {
 	formatTime(time) {
 		const second = Math.floor(time % 60);
 		let minutes = Math.floor(time / 60);
-		return `0${minutes}:${second > 10 ? second : `0${second}`}`
+		return `0${minutes}:${second > 9 ? second : `0${second}`}`
 	};
 
 	controlAudio(type, value) {

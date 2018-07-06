@@ -47,7 +47,7 @@ export default class User extends React.Component{
 			}.bind(this),
 			success:function (res) {
 				this.setState({
-					items:res.music[0].directory
+					items:res.music
 				})
 			}.bind(this),
 			error:function (res) {
