@@ -181,7 +181,7 @@ export default class Audio extends React.Component {
 					<div className="close-list" onClick={this.toggleLists}><Icon type="close-circle-o"/></div>
 					<ul>
 						{this.props.data.map((item, index) => {
-							return <li onClick={(e) => this.playMusicFromList(`${item.url}`)} className="music-my-li"
+							return <li onClick={() => this.playMusicFromList(`${item.url}`)} className="music-my-li"
 							           key={index}>{(index + 1) > 9 ? index + 1 : "0" + (index + 1)}-{item.author}-{item.title}</li>
 						})}
 					</ul>
