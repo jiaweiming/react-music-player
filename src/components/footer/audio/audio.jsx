@@ -10,12 +10,15 @@ class Audio extends React.Component {
 			currentTime: 0,
 			isPlay: true,
 			percentProgress: 0,
+			showLists:false
 		};
 		this.next = this.next.bind(this);
 		this.last = this.last.bind(this);
 		this.play = this.play.bind(this);
 		this.musicEnd = this.musicEnd.bind(this);
 		this.formatTime = this.formatTime.bind(this);
+		this.toggleLists = this.toggleLists.bind(this);
+		this.playMusicFromList = this.playMusicFromList.bind(this)
 	}
 
 	//播放暂停
@@ -47,13 +50,15 @@ class Audio extends React.Component {
 				break;
 			case 'play':
 				this.setState({
-					isPlay: audio.play()
+					isPlay: true
 				});
+				audio.play();
 				break;
 			case 'pause':
 				this.setState({
-					isPlay: audio.pause()
+					isPlay: false
 				});
+				audio.pause();
 				break;
 			case 'changeCurrentTime':
 				this.setState({
@@ -123,9 +128,25 @@ class Audio extends React.Component {
 		audio.play()
 	}
 
+	toggleLists(){
+		this.setState({
+			showLists:!this.state.showLists
+		})
+	}
+
+	playMusicFromList(url){
+		const audio = document.getElementById("my-audio");
+		audio.src = url;
+		audio.load();
+		audio.play();
+		this.setState({
+			showLists:!this.state.showLists
+		})
+	}
+
 	render() {
-		let {isPlay, allTime, currentTime} = this.state;
-		let audioTime = currentTime / allTime * 100;
+		let {isPlay, allTime, currentTime,showLists} = this.state;
+		let audioTime =Math.floor( currentTime / allTime * 100);
 		return <div className="footer-tab-container">
 			<audio id="my-audio" autoPlay="autoPlay"
 			       src={this.props.url}
@@ -140,19 +161,30 @@ class Audio extends React.Component {
 				<span className="total-time">{this.formatTime(allTime)}</span>
 			</div>
 			<div className="footer-control">
-				<Button type="primary" className="play-btn play-last" onClick={this.last}>
-					<Icon type="fast-backward" className="play-left-right"/>
-				</Button>
-				<Button type="primary" className="play-btn play-pause"
-				        onClick={() => this.controlAudio(isPlay ? 'pause' : 'play')}>
-					<Icon type="play-circle-o" className="play-pause"/>
-				</Button>
-				<Button type="primary" className="play-btn play-right" onClick={this.next}>
-					<Icon type="fast-forward" className="play-left-right"/>
-				</Button>
-				<Button type="primary" className="play-btn play-recent-list">
-					<Icon type="profile" className="play-left-right"/>
-				</Button>
+				<div className="footer-four-btn">
+					<Button type="primary" className="play-btn play-last" onClick={this.last}>
+						<Icon type="fast-backward" className="play-left-right"/>
+					</Button>
+					<Button type="primary" className="play-btn play-pause"
+					        onClick={() => this.controlAudio(isPlay === true ? 'pause' : 'play')}>
+						<Icon type={isPlay === true? "pause-circle-o" : "play-circle-o"} className="play-pause"/>
+					</Button>
+					<Button type="primary" className="play-btn play-right" onClick={this.next}>
+						<Icon type="fast-forward" className="play-left-right"/>
+					</Button>
+					<Button type="primary" className="play-btn play-recent-list" onClick={this.toggleLists}>
+						<Icon type="profile" className="play-left-right"/>
+					</Button>
+				</div>
+				<div className={showLists === false? "music-lists-hide" : "music-lists-show"}>
+					<div className="close-list" onClick={this.toggleLists}><Icon type="close-circle-o" /></div>
+					<ul>
+						{this.props.data.map((item,index)=>{
+							return <li onClick={(e) => this.playMusicFromList(`${item.url}`)} className="music-my-li"
+							           key={index}>{(index + 1) > 9 ? index+1 : "0"+(index+1)}-{item.author}-{item.title}</li>
+						})}
+					</ul>
+				</div>
 			</div>
 		</div>
 	}
