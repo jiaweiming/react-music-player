@@ -2,7 +2,7 @@ import React from "react"
 import "./index.less"
 import {Progress, Button, Icon} from 'antd'
 
-class Audio extends React.Component {
+export default class Audio extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,7 +10,7 @@ class Audio extends React.Component {
 			currentTime: 0,
 			isPlay: true,
 			percentProgress: 0,
-			showLists:false
+			showLists: false
 		};
 		this.next = this.next.bind(this);
 		this.last = this.last.bind(this);
@@ -28,13 +28,14 @@ class Audio extends React.Component {
 		})
 	};
 
-	//format time
+	//格式化时间，两位数
 	formatTime(time) {
 		const second = Math.floor(time % 60);
 		let minutes = Math.floor(time / 60);
 		return `0${minutes}:${second > 9 ? second : `0${second}`}`
 	};
 
+	//控制显示，根据参数决定
 	controlAudio(type, value) {
 		const audio = document.getElementById("my-audio");
 		switch (type) {
@@ -128,25 +129,25 @@ class Audio extends React.Component {
 		audio.play()
 	}
 
-	toggleLists(){
+	toggleLists() {//点击按钮，列表显示与隐藏
 		this.setState({
-			showLists:!this.state.showLists
+			showLists: !this.state.showLists
 		})
 	}
 
-	playMusicFromList(url){
+	playMusicFromList(url) {//在列表任意点击歌曲直接播放
 		const audio = document.getElementById("my-audio");
 		audio.src = url;
 		audio.load();
 		audio.play();
 		this.setState({
-			showLists:!this.state.showLists
-		})
+			showLists: !this.state.showLists
+		});
 	}
 
 	render() {
-		let {isPlay, allTime, currentTime,showLists} = this.state;
-		let audioTime =Math.floor( currentTime / allTime * 100);
+		let {isPlay, allTime, currentTime, showLists} = this.state;
+		let audioTime = Math.floor(currentTime / allTime * 100);
 		return <div className="footer-tab-container">
 			<audio id="my-audio" autoPlay="autoPlay"
 			       src={this.props.url}
@@ -167,7 +168,7 @@ class Audio extends React.Component {
 					</Button>
 					<Button type="primary" className="play-btn play-pause"
 					        onClick={() => this.controlAudio(isPlay === true ? 'pause' : 'play')}>
-						<Icon type={isPlay === true? "pause-circle-o" : "play-circle-o"} className="play-pause"/>
+						<Icon type={isPlay === true ? "pause-circle-o" : "play-circle-o"} className="play-pause"/>
 					</Button>
 					<Button type="primary" className="play-btn play-right" onClick={this.next}>
 						<Icon type="fast-forward" className="play-left-right"/>
@@ -176,19 +177,17 @@ class Audio extends React.Component {
 						<Icon type="profile" className="play-left-right"/>
 					</Button>
 				</div>
-				<div className={showLists === false? "music-lists-hide" : "music-lists-show"}>
-					<div className="close-list" onClick={this.toggleLists}><Icon type="close-circle-o" /></div>
+				<div className={showLists === false ? "music-lists-hide" : "music-lists-show"}>
+					<div className="close-list" onClick={this.toggleLists}><Icon type="close-circle-o"/></div>
 					<ul>
-						{this.props.data.map((item,index)=>{
+						{this.props.data.map((item, index) => {
 							return <li onClick={(e) => this.playMusicFromList(`${item.url}`)} className="music-my-li"
-							           key={index}>{(index + 1) > 9 ? index+1 : "0"+(index+1)}-{item.author}-{item.title}</li>
+							           key={index}>{(index + 1) > 9 ? index + 1 : "0" + (index + 1)}-{item.author}-{item.title}</li>
 						})}
 					</ul>
 				</div>
 			</div>
 		</div>
 	}
-
 }
 
-export default Audio

@@ -1,9 +1,9 @@
 import React from "react"
 import ReactDom from "react-dom"
-import Home from "./components/home/home.jsx"
+import MainContent from "./components/router/route.jsx"
 
 ReactDom.render(
-	<Home />,
+	<MainContent />,
 	document.getElementById('APP')
 );
 

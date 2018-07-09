@@ -1,5 +1,5 @@
 import React from "react"
-import Audio from "./audio/audio.jsx"
+import Audio from "../audio/audio.jsx"
 import $ from "jquery"
 
 class Footer extends React.Component {
