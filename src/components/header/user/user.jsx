@@ -37,11 +37,10 @@ export default class User extends React.Component{
 		</div>
 	}
 	componentDidMount(){
-		const url = "http://zhengjinwei.top:3003/list.json";
 		$.ajax({
 			type:"GET",
 			async:true,
-			url:url,
+			url:"http://zhengjinwei.top:3003/list.json",
 			dataType:"json",
 			beforeSend:function () {
 				$(".loading").show();
