@@ -1,5 +1,5 @@
 import React from "react"
-import {HashRouter,Switch,Route} from "react-router-dom"
+import {HashRouter, Switch, Route} from "react-router-dom"
 import Recommend from "../header/recommend/index.jsx"
 import Search from "../header/search/index.jsx"
 import User from "../header/user/user.jsx"
@@ -13,7 +13,7 @@ const MainContent = () => (
 			<Header/>
 			<Switch>
 				<Route path="/User" component={User}/>
-				<Route path="/Recommend" component={Recommend}/>
+				<Route exact path="/" component={Recommend}/>
 				<Route path="/Playing" component={MusicPlaying}/>
 				<Route path="/Search" component={Search}/>
 			</Switch>
