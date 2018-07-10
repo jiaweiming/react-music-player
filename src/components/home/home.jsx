@@ -15,7 +15,7 @@ export default class Home extends React.Component {
 			lists: []
 		}
 	}
-
+	
 	render() {
 		return <div>
 			<HashRouter>
