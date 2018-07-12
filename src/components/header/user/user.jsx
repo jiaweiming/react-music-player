@@ -19,6 +19,7 @@ export default class User extends React.Component{
 	}
 
 	render() {
+
 		const loadingHide = {
 			display: "none"
 		};

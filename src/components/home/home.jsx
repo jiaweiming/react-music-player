@@ -8,6 +8,7 @@ import Search from "../header/search/index.jsx"
 import User from "../header/user/user.jsx"
 import MusicPlaying from "../header/musicPlaying/index.jsx"
 
+
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
@@ -15,22 +16,22 @@ export default class Home extends React.Component {
 			lists: []
 		}
 	}
-	
+
 	render() {
 		return <div>
 			<HashRouter>
 				<div>
 					<div className="header-box-container">
-						<div className="header-box"><Link to="/User">我的</Link></div>
-						<div className="header-box"><Link to="/">推荐</Link></div>
-						<div className="header-box"><Link to="/Playing">播放</Link></div>
-						<div className="header-box"><Link to="/Search">搜索</Link></div>
+						<div className="header-box"><Link to="/user" replace>我的</Link></div>
+						<div className="header-box"><Link to="/" replace>推荐</Link></div>
+						<div className="header-box"><Link to="/playing" replace>播放</Link></div>
+						<div className="header-box"><Link to="/search" replace>搜索</Link></div>
 					</div>
 					<Switch>
-						<Route path="/User" component={User}/>
+						<Route path="/user" component={User}/>
 						<Route exact path="/" component={Recommend}/>
-						<Route path="/Playing" component={MusicPlaying}/>
-						<Route path="/Search" component={Search}/>
+						<Route path="/playing" component={MusicPlaying}/>
+						<Route path="/search" component={Search}/>
 					</Switch>
 					<Audio url="http://www.ytmp3.cn/?down/47153.mp3" data={this.state.lists}/>
 				</div>
@@ -49,7 +50,7 @@ export default class Home extends React.Component {
 			},
 			success: function (res) {
 				this.setState({
-					lists:res.music
+					lists: res.music
 				})
 			}.bind(this),
 			error: function (res) {
