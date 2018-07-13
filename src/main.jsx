@@ -1,63 +1,58 @@
-import React from "react"
+import React,{Component} from "react"
 import ReactDom from "react-dom"
 import Home from "./components/home/home.jsx"
 import {createStore} from 'redux'
 import {Provider,connect} from 'react-redux'
 
-class APP extends React.Component{
+//计数组件
+class Counter extends Component{
 	render(){
-		const {text,onChangeText,onButtonClick} =this.props;
+		const {value,onIncreaseClick} = this.props;
 		return <div>
-			<h2 onClick={onChangeText}>{text}</h2>
-			<button onClick={onButtonClick}>CLICK ME</button>
+			<span>{value}</span>
+			<button onClick={onIncreaseClick}>click</button>
 		</div>
 	}
 }
 
-const changeTextAction ={
-	type:"CHANGE_TEXT"
-};
+//定义的用户操作类型
+const increaseAction = {type:"increase"};
 
-const buttonClickAction ={
-	type:"BUTTON_CLICK"
-};
-
-const initialState = {
-	text:"Hello"
-};
-
-//action
-const reducer = ((state=initialState,action)=>{
+//reducer 处理逻辑计算
+function counter(state={count:0},action) {
+	const count = state.count;
 	switch (action.type){
-		case 'CHANGE-TEXT':
-			return{
-				text:state.text === 'Hello'? "WORLD":"HELLO"
-			};
-		case 'BUTTON_CLICK':
-			return{
-				text:"HELLO!!!!!!"
-			};
-		default:return initialState
+		case 'increase':
+			return {count:count+1};
+		default :
+			return state
 	}
-});
+}
 
-//store
-let store = createStore(reducer);
+//store 用于存储计算后的数据
+const store = createStore(counter);
 
-const mapStateToProps=(state)=>{
-	return{
-		text:state.text
+function mapStateToProps(state) {
+	return {
+		value:state.count
 	}
-};
+}
 
-const mapDispatchToProps = (dispatch)=>{
-	return{
-		onButtonClick:()=>{dispatch(buttonClickAction)},
-		onChangeText:()=>{dispatch(changeTextAction)}
+function mapDispatchToProps(dispatch) {
+	return {
+		onIncreaseClick:()=>dispatch(increaseAction)
 	}
-};
+}
 
-APP = connect(mapStateToProps,mapDispatchToProps)(APP);
+const APP =connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Counter);
+
+
+
+
+
 
 ReactDom.render(
 	<Provider store={store}>
