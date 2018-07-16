@@ -2,7 +2,6 @@ const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin');
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const extractTextPlugin = require("extract-text-webpack-plugin");
-const website = {publicPath: "http://localhost:8000/"};
 const glob = require('glob');
 const PurifyCSSPlugin = require('purifycss-webpack'); //清除冗余的css
 
@@ -14,7 +13,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "../dist"),
 		filename: "bundle.js",
-		publicPath: website.publicPath
+		publicPath: "./"
 	},
 	module: {
 		rules: [
