@@ -28,6 +28,7 @@ export default class Audio extends React.Component {
 		})
 	};
 
+	
 	//格式化时间，两位数
 	formatTime(time) {
 		const second = Math.floor(time % 60);
