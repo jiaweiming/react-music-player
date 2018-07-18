@@ -6,9 +6,9 @@ export default class MusicPlaying extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title:'',
-			author:'',
-			avatar:''
+			title:store.getState().songTitle,
+			author:store.getState().songAuthor,
+			avatar:store.getState().songAvatar,
 		}
 		store.subscribe(() => {
 			this.state.title = store.getState().songTitle; 
