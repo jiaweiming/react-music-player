@@ -26,7 +26,7 @@ class Footer extends React.Component {
 		$.ajax({
 			type: "GET",
 			async: true,
-			url: "http://zhengjinwei.top:3002/files/list.json",
+			url: "http://zhengjinwei.top:3003/list.json",
 			dataType: "json",
 			beforeSend: function () {
 				$(".loading").show();
