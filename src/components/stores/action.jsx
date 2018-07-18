@@ -10,6 +10,33 @@ export function setPageTitle(data) {
 	}
 }
 
+export function setSongTitle(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_SONG_TITLE',
+			data: data
+		})
+	}
+}
+
+export function setSongAvatar(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_SONG_AVATAR',
+			data: data
+		})
+	}
+}
+
+export function setSongAuthor(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_SONG_AUTHOR',
+			data: data
+		})
+	}
+}
+
 export function setInfoList(data) {
 	return (dispatch, getState) => {
 		$.ajax({
@@ -20,7 +47,7 @@ export function setInfoList(data) {
 				dispatch({
 					type: 'SET_INFO_LIST',
 					data: res.music
-				})
+				});
 			}.bind(this)
 		});
 	}

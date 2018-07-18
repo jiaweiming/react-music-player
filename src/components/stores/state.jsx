@@ -1,4 +1,8 @@
 export default {
 	pageTitle: '首页',
-	infoList: []
+	infoList: [],
+	playingSongTitle:'',
+	playingSongUrl:'',
+	playingSongAvatar:'',
+	playingSongAuthor:''
 }

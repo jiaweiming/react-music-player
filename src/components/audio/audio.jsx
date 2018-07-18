@@ -1,8 +1,10 @@
 import React from "react"
 import "./index.less"
 import {Progress, Button, Icon} from 'antd'
+import {connect} from "react-redux"
+import { setSongTitle,setSongAvatar,setSongAuthor } from '../../components/stores/action.jsx'
 
-export default class Audio extends React.Component {
+class Audio extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,7 +12,11 @@ export default class Audio extends React.Component {
 			currentTime: 0,
 			isPlay: true,
 			percentProgress: 0,
-			showLists: false
+			showLists: false,
+			currentAuthor:'小潘潘&小峰峰',
+			currentUrl:'http://www.ytmp3.cn/?down/47153.mp3',
+			currentTitle:'学猫叫',
+			currentAvatar:'http://p1.music.126.net/D1Ov-XMAwUzsr16mQk95fA==/109951163256119128.jpg?param=500y500'
 		};
 		this.next = this.next.bind(this);
 		this.last = this.last.bind(this);
@@ -21,7 +27,15 @@ export default class Audio extends React.Component {
 		this.playMusicFromList = this.playMusicFromList.bind(this)
 	}
 
-	
+	componentDidMount () {
+		let { setSongTitle,setSongAvatar,setSongAuthor } = this.props;
+		// 触发setPageTitle action
+		setSongTitle(this.state.currentTitle);
+		setSongAvatar(this.state.currentAvatar);
+		setSongAuthor(this.state.currentAuthor);
+	}
+
+
 	//播放暂停
 	play() {
 		this.setState({
@@ -192,4 +206,30 @@ export default class Audio extends React.Component {
 		</div>
 	}
 }
+
+// mapStateToProps：将state映射到组件的props中
+const mapStateToProps = (state) => {
+	return {
+		songTitle: state.songTitle,
+		songAvatar:state.songAvatar,
+		songAuthor:state.songAuthor
+	}
+};
+
+// mapDispatchToProps：将dispatch映射到组件的props中
+const mapDispatchToProps = (dispatch, ownProps) => {
+	return {
+		setSongTitle (data) {
+			dispatch(setSongTitle(data))
+		},
+		setSongAvatar (data) {
+			dispatch(setSongAvatar(data))
+		},
+		setSongAuthor (data) {
+			dispatch(setSongAuthor(data))
+		},
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Audio)
 

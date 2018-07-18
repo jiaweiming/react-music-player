@@ -24,9 +24,44 @@ function infoList (state = defaultState.infoList, action) {
 	}
 }
 
+function songTitle (state = defaultState.playingSongTitle, action) {
+	// 不同的action有不同的处理逻辑
+	switch (action.type) {
+		case 'SET_SONG_TITLE':
+			return action.data;
+		default:
+			return state
+	}
+}
+
+
+function songAvatar (state = defaultState.playingSongAvatar, action) {
+	// 不同的action有不同的处理逻辑
+	switch (action.type) {
+		case 'SET_SONG_AVATAR':
+			return action.data;
+		default:
+			return state
+	}
+}
+
+function songAuthor (state = defaultState.playingSongAuthor, action) {
+	// 不同的action有不同的处理逻辑
+	switch (action.type) {
+		case 'SET_SONG_AUTHOR':
+			return action.data;
+		default:
+			return state
+	}
+}
+
+
 
 // 导出所有reducer
 export default combineReducers({
 	pageTitle,
-	infoList
+	infoList,
+	songTitle,
+	songAvatar,
+	songAuthor
 })
