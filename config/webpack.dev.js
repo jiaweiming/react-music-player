@@ -39,7 +39,7 @@ module.exports = {
 				hash: true,
 				template: "./src/index.html"
 		}),
-		new extractTextPlugin("css/styles.css"),   //单独分离到css文件夹下
+		new extractTextPlugin("bundle.css"),   //单独分离到css文件夹下
 	],
 	devServer: {   //开发模式启动本地服务器
 		contentBase: path.resolve(__dirname, "../dist"),

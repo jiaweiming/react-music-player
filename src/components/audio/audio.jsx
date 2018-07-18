@@ -21,8 +21,6 @@ export default class Audio extends React.Component {
 		this.playMusicFromList = this.playMusicFromList.bind(this)
 	}
 
-
-	
 	//播放暂停
 	play() {
 		this.setState({
