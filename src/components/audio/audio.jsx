@@ -21,6 +21,7 @@ export default class Audio extends React.Component {
 		this.playMusicFromList = this.playMusicFromList.bind(this)
 	}
 
+	
 	//播放暂停
 	play() {
 		this.setState({
@@ -28,7 +29,7 @@ export default class Audio extends React.Component {
 		})
 	};
 
-	
+
 	//格式化时间，两位数
 	formatTime(time) {
 		const second = Math.floor(time % 60);
