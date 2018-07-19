@@ -9,21 +9,27 @@ export default class MusicPlaying extends React.Component {
 			title:store.getState().songTitle,
 			author:store.getState().songAuthor,
 			avatar:store.getState().songAvatar,
+			isPlaying:store.getState().songIsPlaying
 		}
+	
 		store.subscribe(() => {
-			this.state.title = store.getState().songTitle; 
-			this.state.author = store.getState().songAuthor; 
-			this.state.avatar = store.getState().songAvatar; 
+			this.setState({
+				title:store.getState().songTitle,
+				author:store.getState().songAuthor,
+				avatar:store.getState().songAvatar,
+				isPlaying:store.getState().songIsPlaying
+			})
 	});
 	}
 
-
 	render() {
-		return <div>
-			<h3 className="playing-title">{this.state.author}-{this.state.title}</h3>
-			<div className="playing-img">
-				<img src={this.state.avatar} alt=""/>
+		return <div className="playing-box">
+			<h2 className="playing-title">{this.state.title}</h2>
+			<h4 className="playing-author">{this.state.author}</h4>
+			<div className="playing-img" >
+				<img src={this.state.avatar} alt="" className={this.state.isPlaying === true?  '' : "playing-paused" }/>
 			</div>
 		</div>
 	}
 }
+

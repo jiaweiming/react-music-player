@@ -45,6 +45,16 @@ function songAvatar (state = defaultState.playingSongAvatar, action) {
 	}
 }
 
+function songIsPlaying (state = defaultState.animationPlayState, action) {
+	// 不同的action有不同的处理逻辑
+	switch (action.type) {
+		case 'SET_SONG_PLAYING':
+			return action.data;
+		default:
+			return state
+	}
+}
+
 function songAuthor (state = defaultState.playingSongAuthor, action) {
 	// 不同的action有不同的处理逻辑
 	switch (action.type) {
@@ -63,5 +73,6 @@ export default combineReducers({
 	infoList,
 	songTitle,
 	songAvatar,
-	songAuthor
+	songAuthor,
+	songIsPlaying
 })

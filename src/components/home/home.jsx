@@ -15,10 +15,6 @@ class Home extends React.Component{
   }
   componentDidMount () {
 		let { setPageTitle, setInfoList } = this.props;
-
-		// 触发setPageTitle action
-		setPageTitle('新的标题');
-
 		// 触发setInfoList action
 		setInfoList()
 	}
@@ -59,12 +55,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		setPageTitle (data) {
 			dispatch(setPageTitle(data))
-			// 执行setPageTitle会返回一个函数
-			// 这正是redux-thunk的所用之处:异步action
-			// 上行代码相当于
-			/*dispatch((dispatch, getState) => {
-					dispatch({ type: 'SET_PAGE_TITLE', data: data })
-			)*/
 		},
 		setInfoList (data) {
 			dispatch(setInfoList(data))

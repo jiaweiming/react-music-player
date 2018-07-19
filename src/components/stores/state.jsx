@@ -4,5 +4,6 @@ export default {
 	playingSongTitle:'',
 	playingSongUrl:'',
 	playingSongAvatar:'',
-	playingSongAuthor:''
+	playingSongAuthor:'',
+	animationPlayState: ''
 }

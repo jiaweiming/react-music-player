@@ -1,5 +1,5 @@
 import React from "react"
-import $ from "jquery"
+import axios from "axios"
 import "./index.less"
 import { Spin } from 'antd'
 
@@ -19,43 +19,33 @@ export default class User extends React.Component{
 	}
 
 	render() {
-		const loadingHide = {
-			display: "none"
-		};
 		let datas = this.state.items;
 		return <div className="content-bar">
-			<div className="example loading" style={loadingHide}>
+			<div className="example loading">
 				<Spin size="large"/>
 			</div>
 			<ul className="music-list-all">
 				{datas.map((item, i) => {
 					return <li onClick={(e) => {
 						this.toggleSongs(e)
-					}} data-link={item.url} key={i} className="music-list-item">{i + 1}-{item.author}-{item.title}</li>
+					}} data-link={item.url} key={i} className="music-list-item">{(i + 1) > 9 ? i+1:"0"+(i+1)}-{item.author}-{item.title}</li>
 				})}
 			</ul>
 		</div>
 	}
+
 	componentDidMount(){
-		$.ajax({
-			type:"GET",
-			async:true,
-			url:"http://zhengjinwei.top:3003/list.json",
-			dataType:"json",
-			beforeSend:function () {
-				$(".loading").show();
-			}.bind(this),
-			success:function (res) {
-				this.setState({
-					items:res.music
-				})
-			}.bind(this),
-			error:function (res) {
-				alert("Some error happened...")
-			}.bind(this),
-			complete:function () {
-				$(".loading").hide();
-			}.bind(this)
+		const that = this;
+		const loading = document.getElementsByClassName("loading")[0];
+		loading.style.display="block";
+		const dataUrl = "http://zhengjinwei.top:3003/list.json";
+		axios.get(dataUrl).then(function(res){
+			that.setState({
+				items:res.data.music
+			})
+			loading.style.display="none";
+		}).catch(function(error){
+			console.log(error)
 		})
 	}
 }

@@ -2,19 +2,16 @@ const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin');
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const extractTextPlugin = require("extract-text-webpack-plugin");
-const website = {publicPath: "http://localhost:8000/"};
-const glob = require('glob');
-const PurifyCSSPlugin = require('purifycss-webpack'); //清除冗余的css
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     main: "./src/main.jsx"
   },
   output: {
-    path: path.resolve(__dirname, "../dist"),
+    path: path.resolve(__dirname, "../prod"),
     filename: "bundle.js",
-    publicPath: website.publicPath
+    publicPath: "./"
   },
   module: {
     rules: [
@@ -39,13 +36,6 @@ module.exports = {
       hash: true,
       template: "./src/index.html"
     }),
-    new extractTextPlugin("main.css"),   //单独分离到css文件夹下
-  ],
-  devServer: {   //开发模式启动本地服务器
-    contentBase: path.resolve(__dirname, "../dist"),
-    host: "localhost",
-    port: 8000,
-    compress: true,
-    open:true
-  }
+    new extractTextPlugin("bundle.css"),   //单独分离到css文件夹下
+  ]
 };

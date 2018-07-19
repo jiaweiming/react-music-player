@@ -1,5 +1,5 @@
-// action也是函数
-import $ from "jquery"
+
+import axios from "axios"
 
 export function setPageTitle(data) {
 	return (dispatch, getState) => {
@@ -28,6 +28,15 @@ export function setSongAvatar(data) {
 	}
 }
 
+export function setSongIsPlaying(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_SONG_PLAYING',
+			data: data
+		})
+	}
+}
+
 export function setSongAuthor(data) {
 	return (dispatch, getState) => {
 		dispatch({
@@ -37,18 +46,17 @@ export function setSongAuthor(data) {
 	}
 }
 
+
 export function setInfoList(data) {
 	return (dispatch, getState) => {
-		$.ajax({
-			type: "GET",
-			url: "http://zhengjinwei.top:3003/list.json",
-			dataType: "json",
-			success: function (res) {
-				dispatch({
-					type: 'SET_INFO_LIST',
-					data: res.music
-				});
-			}.bind(this)
-		});
+		const dataUrl = "http://zhengjinwei.top:3003/list.json";
+		axios.get(dataUrl).then(function(res){
+			dispatch({
+				type: 'SET_INFO_LIST',
+				data: res.data.music
+			});
+		}).catch(function(error){
+			console.log(error)
+		})
 	}
 }
