@@ -6,20 +6,20 @@ export default class MusicPlaying extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title:store.getState().songTitle,
-			author:store.getState().songAuthor,
-			avatar:store.getState().songAvatar,
-			isPlaying:store.getState().songIsPlaying
+			title: store.getState().songTitle,
+			author: store.getState().songAuthor,
+			avatar: store.getState().songAvatar,
+			isPlaying: store.getState().songIsPlaying
 		}
-	
+
 		store.subscribe(() => {
 			this.setState({
-				title:store.getState().songTitle,
-				author:store.getState().songAuthor,
-				avatar:store.getState().songAvatar,
-				isPlaying:store.getState().songIsPlaying
+				title: store.getState().songTitle,
+				author: store.getState().songAuthor,
+				avatar: store.getState().songAvatar,
+				isPlaying: store.getState().songIsPlaying
 			})
-	});
+		});
 	}
 
 	render() {
@@ -27,7 +27,7 @@ export default class MusicPlaying extends React.Component {
 			<h2 className="playing-title">{this.state.title}</h2>
 			<h4 className="playing-author">{this.state.author}</h4>
 			<div className="playing-img" >
-				<img src={this.state.avatar} alt="" className={this.state.isPlaying === true?  '' : "playing-paused" }/>
+				<img src={this.state.avatar} alt="" className={this.state.isPlaying === true ? '' : "playing-paused"} />
 			</div>
 		</div>
 	}

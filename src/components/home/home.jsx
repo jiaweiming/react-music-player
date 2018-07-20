@@ -35,7 +35,7 @@ class Home extends React.Component{
 						<Route path="/playing" component={MusicPlaying}/>
 						<Route path="/search" component={Search}/>
 					</Switch>
-					<Audio url="http://www.ytmp3.cn/?down/47153.mp3" data={infoList}/>
+					<Audio url="http://www.ytmp3.cn/?down/47153.mp3"/>
 				</div>
 			</HashRouter>
 		</div>
