@@ -1,26 +1,29 @@
-.content-bar{
+.user-all{
   width: 100%;
-  .loading{
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    display: none;
-  }
-  .music-list-all{
-    padding: 10px;
+  .music-list-show{
     .music-list-item{
-      width: 100%;
-      color: rgba(0, 0, 0, 0.781);
-      padding: 8px 0;
-      font-size: 18px;
-      overflow: hidden;
-      white-space:nowrap;
+      padding: 5px;
+      .list-icon{
+        padding: 0 5px;
+        color:rgba(183, 0, 255, 0.678);
+      }
+      a{
+        font-size: 16px;
+        color:rgba(204, 0, 255, 0.678);
+        transition: all .3s linear;
+      }
     }
-    .line{
-      border: 0;
-      background-color:rgba(0, 0, 0, 0.856);
-      height: 1px;
+    .music-list-li{
+      padding: 5px;
+      .list-icon{
+        padding: 0 5px;
+        color:rgba(255, 115, 0, 0.678);
+      }
+      a{
+        font-size: 16px;
+        color:rgba(255, 115, 0, 0.678);
+        transition: all .3s linear;
+      }
     }
   }
 }

@@ -1,51 +1,50 @@
 import React from "react"
-import axios from "axios"
 import "./index.less"
-import { Spin } from 'antd'
+import { Icon } from "antd"
+import DefaultLists from "./lists/default.jsx"
+import FavoriteLists from "./lists/favorite.jsx"
+import CollectionLists from "./lists/collection.jsx"
+import { HashRouter, Switch, Route, Link ,Redirect } from "react-router-dom"
 
 export default class User extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: [],
-			url: ''
+			currentIndex: "0"
 		}
+		this.setCurrentIndex = this.setCurrentIndex.bind(this);
 	}
 
-	toggleSongs(e) {
-		console.log(e.target.getAttribute("data-link"));
+	setCurrentIndex(event) {
 		this.setState({
-			url: e.target.getAttribute("data-link")
+			currentIndex: event.currentTarget.getAttribute('index')
 		})
 	}
 
 	render() {
-		let datas = this.state.items;
-		return <div className="content-bar">
-			<div className="example loading">
-				<Spin size="large" />
-			</div>
-			<ul className="music-list-all">
-				{datas.map((item, i) => {
-					return <li onClick={(e) => {this.toggleSongs(e)
-					}} data-link={item.url} key={i} className="music-list-item">{(i + 1) > 9 ? i + 1 : "0" + (i + 1)}-{item.author}-{item.title}</li>
-				})}
-			</ul>
+		return <div className="user-all">
+			<HashRouter>
+				<div className="music-list-show">
+					<ul>
+						<li index="0" className={this.state.currentIndex === "0" ? "music-list-li" : 'music-list-item'} onClick={this.setCurrentIndex}>
+							<Link to="/user/default" replace><Icon className="list-icon" type="smile" />默认列表<Icon className="list-icon" type={this.state.currentIndex === "0" ? "down" : "right"} /></Link>
+						</li>
+						<li index="1" className={this.state.currentIndex === "1" ? "music-list-li" : 'music-list-item'} onClick={this.setCurrentIndex}>
+							<Link to="/user/collection" replace><Icon className="list-icon" type="star" />我的收藏<Icon className="list-icon" type={this.state.currentIndex === "1" ? "down" : "right"} /></Link>
+						</li>
+						<li index="2" className={this.state.currentIndex === "2" ? "music-list-li" : 'music-list-item'} onClick={this.setCurrentIndex}>
+							<Link to="/user/favorite" replace><Icon className="list-icon" type="heart" />我喜欢的<Icon className="list-icon" type={this.state.currentIndex === "2" ? "down" : "right"} /></Link>
+						</li>
+					</ul>
+					<hr />
+					<Switch>
+						<Route exact path="/user/default" component={DefaultLists} />
+						<Route path="/user/collection" component={CollectionLists} />
+						<Route path="/user/favorite" component={FavoriteLists} />
+						<Redirect path="/" to={{pathname: '/user/default'}}/>
+					</Switch>
+				</div>
+			</HashRouter>
 		</div>
-	}
-
-	componentDidMount() {
-		const that = this;
-		const loading = document.getElementsByClassName("loading")[0];
-		loading.style.display = "block";
-		const dataUrl = "http://zhengjinwei.top:3003/list.json";
-		axios.get(dataUrl).then(function (res) {
-			that.setState({
-				items: res.data.music
-			})
-			loading.style.display = "none";
-		}).catch(function (error) {
-			console.log(error)
-		})
 	}
 }
