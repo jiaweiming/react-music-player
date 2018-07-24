@@ -24,6 +24,15 @@ function infoList (state = defaultState.infoList, action) {
 	}
 }
 
+function collectionList (state = defaultState.collectionLists, action) {
+	switch (action.type) {
+		case 'SET_COLLECTION_LIST':
+			return action.data;
+		default:
+			return state
+	}
+}
+
 function songTitle (state = defaultState.playingSongTitle, action) {
 	// 不同的action有不同的处理逻辑
 	switch (action.type) {
@@ -74,5 +83,6 @@ export default combineReducers({
 	songTitle,
 	songAvatar,
 	songAuthor,
-	songIsPlaying
+	songIsPlaying,
+	collectionList
 })

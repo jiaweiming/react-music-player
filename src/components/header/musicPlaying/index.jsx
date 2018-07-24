@@ -22,6 +22,12 @@ export default class MusicPlaying extends React.Component {
 		});
 	}
 
+	componentWillUnmount (){ //用于消除异步操作，组件未挂载，而setState失败
+    this.setState = (state,callback)=>{
+      return;
+    };
+	}	
+
 	render() {
 		return <div className="playing-box">
 			<h2 className="playing-title">{this.state.title}</h2>

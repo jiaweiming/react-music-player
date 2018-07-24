@@ -5,5 +5,6 @@ export default {
 	playingSongUrl:'',
 	playingSongAvatar:'',
 	playingSongAuthor:'',
-	animationPlayState: ''
+	animationPlayState: '',
+	collectionLists:[]
 }

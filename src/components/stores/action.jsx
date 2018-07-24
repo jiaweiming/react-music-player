@@ -19,6 +19,15 @@ export function setSongTitle(data) {
 	}
 }
 
+export function setCollectionList(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_COLLECTION_LIST',
+			data: data
+		})
+	}
+}
+
 export function setSongAvatar(data) {
 	return (dispatch, getState) => {
 		dispatch({
