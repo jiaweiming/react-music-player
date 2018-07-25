@@ -33,6 +33,16 @@ function collectionList (state = defaultState.collectionLists, action) {
 	}
 }
 
+function hotHeart (state = defaultState.hotHeart, action) {
+	switch (action.type) {
+		case 'SET_HOT_HEART':
+			return action.data;
+		default:
+			return state
+	}
+}
+
+
 function songTitle (state = defaultState.playingSongTitle, action) {
 	// 不同的action有不同的处理逻辑
 	switch (action.type) {
@@ -74,6 +84,16 @@ function songAuthor (state = defaultState.playingSongAuthor, action) {
 	}
 }
 
+function songUrl (state = defaultState.playingSongUrl, action) {
+	// 不同的action有不同的处理逻辑
+	switch (action.type) {
+		case 'SET_SONG_URL':
+			return action.data;
+		default:
+			return state
+	}
+}
+
 
 
 // 导出所有reducer
@@ -84,5 +104,7 @@ export default combineReducers({
 	songAvatar,
 	songAuthor,
 	songIsPlaying,
-	collectionList
+	collectionList,
+	hotHeart,
+	songUrl
 })

@@ -1,4 +1,6 @@
 import React from "react"
+import "./index.less"
+import {Icon} from "antd"
 import store from "../../../stores/index.jsx"
 
 
@@ -20,12 +22,11 @@ export default class FavoriteLists extends React.Component{
     };
   }
   render(){
-    console.log(this.state.favoriteList)
     return <div>
-      <h2>喜欢列表</h2>
+      <h2 className="favorite-icon"><Icon type="customer-service" /><Icon type="heart" /></h2>
       <ul>
         {this.state.favoriteList.map((item,index)=>{
-          return <li key={index}>{item.author}-{item.title}</li>
+          return <li className="favorite-list-item" key={index}>{index > 9 ? index+1 : "0"+(index+1)}-{item.author}-{item.title}</li>
         })}
       </ul>
     </div>

@@ -28,6 +28,15 @@ export function setCollectionList(data) {
 	}
 }
 
+export function setHotHeart(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_HOT_HEART',
+			data: data
+		})
+	}
+}
+
 export function setSongAvatar(data) {
 	return (dispatch, getState) => {
 		dispatch({
@@ -50,6 +59,15 @@ export function setSongAuthor(data) {
 	return (dispatch, getState) => {
 		dispatch({
 			type: 'SET_SONG_AUTHOR',
+			data: data
+		})
+	}
+}
+
+export function setSongUrl(data) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SET_SONG_URL',
 			data: data
 		})
 	}

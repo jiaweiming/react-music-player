@@ -3,7 +3,7 @@ import "./index.less"
 import { Progress, Button, Icon } from 'antd'
 import { connect } from "react-redux"
 import store from "../stores/index.jsx"
-import { setSongTitle, setSongAvatar, setSongAuthor, setSongIsPlaying } from '../../components/stores/action.jsx'
+import { setSongTitle, setSongAvatar, setSongAuthor, setSongIsPlaying, setSongUrl } from '../../components/stores/action.jsx'
 
 class Audio extends React.Component {
 	constructor(props) {
@@ -12,14 +12,14 @@ class Audio extends React.Component {
 			allTime: 0,
 			currentTime: 0,
 			isPlay: true,
-			musicList:store.getState().infoList,
+			musicList: store.getState().infoList,
 			percentProgress: 0,
 			showLists: false,
 			playing: true,
-			currentAuthor: '小潘潘&小峰峰',
-			currentUrl: 'http://www.ytmp3.cn/?down/47153.mp3',
-			currentTitle: '学猫叫',
-			currentAvatar: 'http://p1.music.126.net/D1Ov-XMAwUzsr16mQk95fA==/109951163256119128.jpg?param=500y500'
+			currentAuthor: store.getState().songAuthor,
+			currentUrl: store.getState().songUrl,
+			currentTitle: store.getState().songTitle,
+			currentAvatar: store.getState().songAvatar
 		};
 		this.next = this.next.bind(this);
 		this.last = this.last.bind(this);
@@ -31,26 +31,31 @@ class Audio extends React.Component {
 		store.subscribe(() => {
 			let initState = store.getState();
 			this.setState({
-				musicList:initState.infoList
+				musicList: initState.infoList,
+				currentAuthor: initState.songAuthor,
+				currentUrl: initState.songUrl,
+				currentTitle: initState.songTitle,
+				currentAvatar: initState.songAvatar
 			})
-	});
+		});
 	}
 
 	componentDidMount() {
-		let { setSongTitle, setSongAvatar, setSongAuthor, setSongIsPlaying } = this.props;
+		let { setSongTitle, setSongAvatar, setSongAuthor, setSongIsPlaying, setSongUrl } = this.props;
 		// 触发setPageTitle action
 		setSongTitle(this.state.currentTitle);
 		setSongAvatar(this.state.currentAvatar);
 		setSongAuthor(this.state.currentAuthor);
-		setSongIsPlaying(this.state.playing)
+		setSongIsPlaying(this.state.playing);
+		setSongUrl(this.state.currentUrl)
 	}
 
 	//移除当前歌曲
-	removeSong(index){
+	removeSong(index) {
 		let currentSongList = this.state.musicList;
-		currentSongList.splice(index,1);
+		currentSongList.splice(index, 1);
 		this.setState({
-			musicList:currentSongList
+			musicList: currentSongList
 		})
 	}
 	//播放暂停
@@ -211,11 +216,11 @@ class Audio extends React.Component {
 	}
 
 	render() {
-		let { isPlay, allTime, currentTime, showLists,musicList } = this.state;
+		let { isPlay, allTime, currentTime, showLists, musicList } = this.state;
 		let audioTime = Math.floor(currentTime / allTime * 100);
 		return <div className="footer-tab-container">
 			<audio id="my-audio" autoPlay="autoPlay"
-				src={this.props.url}
+				src={this.state.currentUrl}
 				onCanPlay={() => this.controlAudio('allTime')}
 				onEnded={this.musicEnd}
 				onTimeUpdate={(e) => this.controlAudio("getCurrentTime")}>
@@ -243,16 +248,16 @@ class Audio extends React.Component {
 					</Button>
 				</div>
 				<div className={showLists === false ? "music-lists-hide" : "music-lists-show"}>
-				<div className="close-list" >
-					<span><Icon type="customer-service" />播放列表</span>
-					<Icon onClick={this.toggleLists} type="close-circle-o" />
-				</div>
+					<div className="close-list" >
+						<span><Icon type="customer-service" />播放列表</span>
+						<Icon onClick={this.toggleLists} type="close-circle-o" />
+					</div>
 					<ul>
 						{musicList.map((item, index) => {
-							return <li  className="music-my-li" key={index}>
-							<span onClick={(e) => this.playMusicFromList(`${item.url}`, `${item.author}`, `${item.title}`, `${item.avatar}`)}>
-							{(index + 1) >9 ? index + 1 : "0" + (index + 1)}-{item.author}-{item.title}
-							</span><span onClick={(e)=>{this.removeSong(index)}} className="delete-icon"><Icon type="delete" /></span>
+							return <li className="music-my-li" key={index}>
+								<span className={this.state.currentTitle === item.title ? "song-active" :""} onClick={(e) => this.playMusicFromList(`${item.url}`, `${item.author}`, `${item.title}`, `${item.avatar}`)}>
+									{(index + 1) > 9 ? index + 1 : "0" + (index + 1)}-{item.author}-{item.title}
+								</span><span onClick={(e) => { this.removeSong(index) }} className="delete-icon"><Icon type="delete" /></span>
 							</li>
 						})}
 					</ul>
@@ -268,7 +273,8 @@ const mapStateToProps = (state) => {
 		songTitle: state.songTitle,
 		songAvatar: state.songAvatar,
 		songAuthor: state.songAuthor,
-		songIsPlaying: state.songIsPlaying
+		songIsPlaying: state.songIsPlaying,
+		songUrl: state.songUrl
 	}
 };
 
@@ -286,6 +292,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		setSongIsPlaying(data) {
 			dispatch(setSongIsPlaying(data))
+		},
+		setSongUrl(data) {
+			dispatch(setSongUrl(data))
 		}
 	}
 };
