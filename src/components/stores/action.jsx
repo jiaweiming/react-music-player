@@ -28,15 +28,6 @@ export function setCollectionList(data) {
 	}
 }
 
-export function setHotHeart(data) {
-	return (dispatch, getState) => {
-		dispatch({
-			type: 'SET_HOT_HEART',
-			data: data
-		})
-	}
-}
-
 export function setSongAvatar(data) {
 	return (dispatch, getState) => {
 		dispatch({

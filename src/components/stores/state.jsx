@@ -6,6 +6,5 @@ export default {
 	playingSongAvatar:'http://p1.music.126.net/D1Ov-XMAwUzsr16mQk95fA==/109951163256119128.jpg?param=500y500',
 	playingSongAuthor:'小潘潘&小峰峰',
 	animationPlayState: '',
-	collectionLists:[],
-	hotHeart:[]
+	collectionLists:[]
 }

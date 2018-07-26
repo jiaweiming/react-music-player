@@ -33,16 +33,6 @@ function collectionList (state = defaultState.collectionLists, action) {
 	}
 }
 
-function hotHeart (state = defaultState.hotHeart, action) {
-	switch (action.type) {
-		case 'SET_HOT_HEART':
-			return action.data;
-		default:
-			return state
-	}
-}
-
-
 function songTitle (state = defaultState.playingSongTitle, action) {
 	// 不同的action有不同的处理逻辑
 	switch (action.type) {
@@ -52,7 +42,6 @@ function songTitle (state = defaultState.playingSongTitle, action) {
 			return state
 	}
 }
-
 
 function songAvatar (state = defaultState.playingSongAvatar, action) {
 	// 不同的action有不同的处理逻辑
@@ -105,6 +94,5 @@ export default combineReducers({
 	songAuthor,
 	songIsPlaying,
 	collectionList,
-	hotHeart,
 	songUrl
 })
