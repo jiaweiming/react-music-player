@@ -34,7 +34,7 @@ class DefaultLists extends React.Component {
   }
   componentWillUnmount() { //用于消除异步操作，组件未挂载，而setState失败
     this.setState = (state, callback) => {
-      return;
+      return false;
     };
   }
 
@@ -45,7 +45,7 @@ class DefaultLists extends React.Component {
       this.setState(({
         collectionLists: this.arrList
       }), () => {  //在setState的回调函数内执行action函数，避免异步state未结束，而执行函数
-        let newArrList = Array.from(new Set(this.state.collectionLists)) //数组去重
+        let newArrList = Array.from(new Set(this.state.collectionLists)); //数组去重
         setCollectionList(newArrList);
       });
     } else {
@@ -53,7 +53,7 @@ class DefaultLists extends React.Component {
       this.setState(({
         collectionLists: this.arrList
       }), () => {
-        let newArrList = Array.from(new Set(this.state.collectionLists))
+        let newArrList = Array.from(new Set(this.state.collectionLists));
         setCollectionList(newArrList);
       });
     }
@@ -80,9 +80,9 @@ class DefaultLists extends React.Component {
         {this.state.defaultList.map((item, index) => {
           return <li className={this.state.songTitle === item.title ? "music-my-li-active" : "music-my-li"} key={index}>
             <span onClick={(e) => { this.switchMusic(item, index) }} className="list-title-default" >
-              {(index + 1) > 9 ? index + 1 : "0" + (index + 1)}-<Icon type="play-circle-o" />
-              -<span>
-                {(item.author + item.title).length < 20 ? <span>{item.author}-{item.title}</span> : <marquee className="marquee-title">{item.author}-{item.title}</marquee>}
+              {(index + 1) > 9 ? index + 1 : "0" + (index + 1)} <Icon type="play-circle-o" />
+              <span>
+                {(item.author + item.title).length < 20 ? <span>{item.author}-{item.title}</span> : <span className="marquee-title">{item.author}-{item.title}</span>}
               </span>
             </span>
             <span index={index} onClick={(e) => { this.setMusicIntoFavorite(item, index, e) }} className='add-to-favorite'><Icon index={index} className={this.state.collectionLists.includes(item) ? "heart" : ""} type="heart" /></span>

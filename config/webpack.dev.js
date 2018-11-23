@@ -2,9 +2,7 @@ const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin');
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const extractTextPlugin = require("extract-text-webpack-plugin");
-const website = {publicPath: "http://localhost:8000/"};
-const glob = require('glob');
-const PurifyCSSPlugin = require('purifycss-webpack'); //清除冗余的css
+const website = {publicPath: "http://localhost:8000/",onlinePath:'./'};
 
 module.exports = {
   mode: "development",
@@ -18,18 +16,13 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.less$/, use:extractTextPlugin.extract({  //css分离
-          fallback:"style-loader",
-          use:[{loader:"css-loader"},{loader:"postcss-loader"},{loader:"less-loader"}]
-        })},
+      {test: /\.less$/, use:extractTextPlugin.extract({fallback:"style-loader",
+        use:[{loader:"css-loader"},{loader:"postcss-loader"},{loader:"less-loader"}]})},
       {test: /\.css$/,use:[{loader:"style-loader"},{loader: "css-loader"}]},
       {test: /\.(png|jpg|gif|jpeg|ico|svg)/, use: [{loader: "url-loader", options: {limit: 500,outputPath: "images/"}}]},
       {test: /\.(htm|html)$i/, use: ["html-withimg-loader"]},
-      {test: /\.(js|jsx)$/,use:{loader: "babel-loader", options: {
-            presets:['env','react'],
-            "plugins":[ ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]]}}, //按需加载
-        exclude:/node_modules/
-      },
+      {test: /\.(js|jsx)$/,use:{loader: "babel-loader", options: {presets:['env','react'],
+        "plugins":[ ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]]}}}, //按需加载
     ]
   },
   plugins: [

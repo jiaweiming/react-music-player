@@ -1,40 +1,92 @@
-.user-all{
+.ant-tabs-ink-bar{
+  display: none !important;
+}
+.user-all {
   width: 100%;
-  .music-list-show{
-    .music-list-item{
-      padding: 5px;
-      .list-icon{
-        padding: 0 5px;
-        color:rgba(183, 0, 255, 0.678);
+  margin-top: 44px;
+  padding-bottom: 80px;
+  .account{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:5px 10px;
+    box-shadow: 1px 1px 1px #fff;
+    .remind{
+      i{
+        font-size: 20px;
       }
-      a{
+    }
+  }
+  .left-box {
+    display: flex;
+    align-items: center;
+    .avatar {
+      width: 60px;
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+    .name {
+      margin-left: 10px;
+      .vip{
+        padding: 0 3px;
+        color: orange;
+        font-weight: 600;
+        font-style: oblique;
+      }
+      span{
+        color: #f9f9f9;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .music-list-show {
+    .category{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .music-list-item {
+      padding: 5px;
+      .list-icon {
+        padding: 0 5px;
+        color: rgba(183, 0, 255, 0.678);
+      }
+      a {
         font-size: 16px;
-        color:rgba(204, 0, 255, 0.678);
+        color: rgba(204, 0, 255, 0.678);
         transition: all .3s linear;
       }
     }
-    .music-list-li{
+    .music-list-li {
       padding: 5px;
-      .list-icon{
+      .list-icon {
         padding: 0 5px;
-        color:rgba(255, 115, 0, 0.678);
+        color: rgba(255, 115, 0, 0.678);
       }
-      a{
+      a {
         font-size: 16px;
-        color:rgba(255, 115, 0, 0.678);
+        color: rgba(255, 115, 0, 0.678);
         transition: all .3s linear;
       }
     }
   }
 }
-.heart-active{
+
+.heart-active {
   color: red !important;
 }
-.favorite-icon{
+
+.favorite-icon {
   margin-bottom: 0;
   color: rgba(255, 123, 0, 0.89);
 }
-.favorite-list-item{
+
+.favorite-list-item {
   padding: 5px 5px;
   font-size: 16px;
   border-bottom: 1px solid #ddd;
